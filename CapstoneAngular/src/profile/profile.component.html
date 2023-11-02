@@ -1,0 +1,56 @@
+<app-top-bar #top></app-top-bar>
+<div class="profile-info">
+    <table>
+        <tr>
+            <td>Username:</td><td>{{top.user.uName}}</td>
+        </tr>
+        <tr>
+            <td>Email:</td><td>{{top.user.email}}</td>
+        </tr>
+        <tr>
+            <td>Balance:</td><td>${{top.user.balance}}</td>
+        </tr>
+    </table>
+</div>
+<!--<div class="update-profile-window">
+    <h3>Update Profile</h3>
+    <form #f="ngForm" (ngSubmit)="updateProfile(f,id)">
+        <div class="form-field">
+            <label for="name">Name</label>
+            <input type="text" required name="name" [(ngModel)]="f.value.name" #name = 'ngModel'/>
+            <div *ngIf = "!name.valid" class="error">
+            <p *ngIf="name.errors?.['required']">
+              Name is required
+            </p>
+          </div>
+        </div>
+        <div class="form-field">
+            <label for="email">Email</label>
+            <input type="text" required email name="email" [(ngModel)]="f.value.email" #email='ngModel'/>
+            <div *ngIf = "!email.valid" class="error">
+            <p *ngIf="email.errors?.['required']">
+              Email is required
+            </p>
+            <p *ngIf="email.errors?.['email']">
+              Need valid email
+            </p>
+          </div>
+        </div>
+        <p>
+            <button type = "submit">Submit</button>
+        </p>
+    </form>
+</div>
+<div class="balance-manager-window">
+    <h3>Add to Balance</h3>
+    <form #f="ngForm" (ngSubmit)="addToBalance(f,id)">
+        <div class="form-field">
+            <label for="deposit">Amount</label>
+            <input type="number" name="deposit" step=0.01 min=0 [(ngModel)]="f.value.deposit">
+        </div>
+        <p>
+            <button type = "submit">Submit</button>
+        </p>
+    </form>
+</div>-->
+

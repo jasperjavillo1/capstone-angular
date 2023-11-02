@@ -1,0 +1,199 @@
+<app-profile></app-profile>
+<h2>Admin Features</h2>
+<h3>Manage Products</h3>
+<div class="add-product-window">
+    <h4>Add Product</h4>
+    <form #pf1="ngForm" (ngSubmit)="addProduct(pf1)">
+        <div class="form-field">
+            <label for="name">Name</label>
+            <input type="text" required name="name" [(ngModel)]="pf1.value.name" #pf1name = 'ngModel'/>
+            <div *ngIf = "!pf1name.valid" class="error">
+            <p *ngIf="pf1name.errors?.['required']">
+              Name is required
+            </p>
+          </div>
+        </div>
+        <div class="form-field">
+            <label for="imageId">Image ID</label>
+            <input type="text" required name="imageId" [(ngModel)]="pf1.value.imageId" #pf1imageId = 'ngModel'/>
+            <div *ngIf = "!pf1imageId.valid" class="error">
+            <p *ngIf="pf1imageId.errors?.['required']">
+              Image Id is required
+            </p>
+          </div>
+        </div>
+        <div class="form-field">
+            <label for="price">Price</label>
+            <input type="number" name="price" step=0.01 min=0 required [(ngModel)]="pf1.value.price">
+        </div>
+        <div class="form-field">
+            <label for="description">Description</label>
+            <input type="text" required name="description" [(ngModel)]="pf1.value.description" #pf1description = 'ngModel'/>
+            <div *ngIf = "!pf1description.valid" class="error">
+            <p *ngIf="pf1description.errors?.['required']">
+              Description is required
+            </p>
+          </div>
+        </div>
+        <p>
+            <button type = "submit">Submit</button>
+        </p>
+    </form>
+</div>
+<div class="update-product-window">
+    <h4>Update Product</h4>
+    <form #pf2="ngForm" (ngSubmit)="updateProduct(pf2)">
+        <div class="form-field">
+            <label for="id">ID</label>
+            <input type="number" name="id" min=0 required [(ngModel)]="pf2.value.id">
+        </div>
+        <div class="form-field">
+            <label for="name">Name</label>
+            <input type="text" required name="name" [(ngModel)]="pf2.value.name" #pf2name = 'ngModel'/>
+            <div *ngIf = "!pf2name.valid" class="error">
+            <p *ngIf="pf2name.errors?.['required']">
+              Name is required
+            </p>
+          </div>
+        </div>
+        <div class="form-field">
+            <label for="imageId">Image ID</label>
+            <input type="text" required name="imageId" [(ngModel)]="pf2.value.imageId" #pf2imageId = 'ngModel'/>
+            <div *ngIf = "!pf2imageId.valid" class="error">
+            <p *ngIf="pf2imageId.errors?.['required']">
+              Image Id is required
+            </p>
+          </div>
+        </div>
+        <div class="form-field">
+            <label for="price">Price</label>
+            <input type="number" name="price" step=0.01 min=0 required [(ngModel)]="pf2.value.price">
+        </div>
+        <div class="form-field">
+            <label for="description">Description</label>
+            <input type="text" required name="description" [(ngModel)]="pf2.value.description" #pf2description = 'ngModel'/>
+            <div *ngIf = "!pf2description.valid" class="error">
+            <p *ngIf="pf2description.errors?.['required']">
+              Description is required
+            </p>
+          </div>
+        </div>
+        <p>
+            <button type = "submit">Submit</button>
+        </p>
+    </form>
+</div>
+<div class="view-product-window">
+    <table>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Image</th>
+          <th>Price</th>
+          <th>Description</th>
+        </tr>
+        <tr *ngFor="let p of prodList">
+          <td>{{p.p_id}}</td>
+          <td>{{p.p_name}}</td>
+          <td><img src={{p.image_id}} alt="Product Image" width="50" height="50"></td>
+          <td>{{p.p_price}}</td>
+          <td>{{p.p_description}}</td>
+        </tr>
+    </table>
+</div>
+<h3>Manage Stock</h3>
+<div class="stock-window">
+  <h4>Check Stock</h4>
+    <form #sf2="ngForm" (ngSubmit)="displayStock(sf2)">
+        <div class="form-field">
+            <label for="id">ID</label>
+            <input type="number" name="id" min=0 required [(ngModel)]="sf2.value.id">
+        </div>
+        <p>
+            <button type = "submit">Submit</button>
+        </p>
+    </form>
+    <table>
+        <tr>
+          <th>Product ID</th>
+          <th>Product Quantity</th>
+        </tr>
+        <tr>
+          <td>{{s.p_id}}</td>
+          <td>{{s.s_quantity}}</td>
+        </tr>
+    </table>
+</div>
+<div class="update-stock-window">
+    <h4>Add Stock</h4>
+    <form #sf1="ngForm" (ngSubmit)="updateStock(sf1)">
+        <div class="form-field">
+            <label for="id">ID</label>
+            <input type="number" name="id" min=0 required [(ngModel)]="sf1.value.id">
+        </div>
+        <div class="form-field">
+            <label for="amount">Amount</label>
+            <input type="number" name="amount" min=0 required [(ngModel)]="sf1.value.amount">
+        </div>
+        <p>
+            <button type = "submit">Submit</button>
+        </p>
+    </form>
+</div>
+<h3>Manage Orders</h3>
+<div class="display-orders-window">
+    <h4>Order Report</h4>
+    <form #of="ngForm" (ngSubmit)="getOrders(of)">
+        <div class="form-field">
+            <label for="startDate">Start Date</label>
+            <input type="date" name="startDate" [(ngModel)]="of.value.startDate" placeholder="yyyy-MM-dd" required />
+        </div>
+        <div class="form-field">
+          <label for="endDate">End Date</label>
+          <input type="date" name="endDate" [(ngModel)]="of.value.endDate" placeholder="yyyy-MM-dd" required />
+        </div>
+        <p>
+            <button type = "submit">Submit</button>
+        </p>
+    </form>
+    <table>
+        <tr>
+          <th>Order ID</th>
+          <th>User ID</th>
+          <th>Product ID</th>
+          <th>Quantity</th>
+          <th>Date</th>
+          <th>Price</th>
+          <th>Discount ID</th>
+        </tr>
+        <tr *ngFor="let o of ordersList">
+          <td>{{o.o_id}}</td>
+          <td>{{o.userId}}</td>
+          <td>{{o.productId}}</td>
+          <td>{{o.quantity}}</td>
+          <td>{{o.date}}</td>
+          <td>{{o.o_price}}</td>
+          <td>{{o.d_id}}</td>
+        </tr>
+    </table>
+</div>
+<div class="add-discount-window">
+    <h4>Issue Discount</h4>
+    <form #df="ngForm" (ngSubmit)="issueDiscount(df)">
+        <div class="form-field">
+            <label for="pId">Product ID</label>
+            <input type="number" name="pId" min=0 required [(ngModel)]="df.value.pId">
+        </div>
+        <div class="form-field">
+            <label for="uId">User ID</label>
+            <input type="number" name="uId" min=0 required [(ngModel)]="df.value.uId">
+        </div>
+        <div class="form-field">
+            <label for="discount">Discount(%)</label>
+            <input type="number" name="discount" min=0 max=1 step=0.01 required [(ngModel)]="df.value.discount">
+        </div>
+        <p>
+            <button type = "submit">Submit</button>
+        </p>
+    </form>
+</div>
